@@ -41,3 +41,7 @@ I am going to choose year as 2019:
 ![alt text](https://github.com/bozanomer/US-Domestic-Airline-Flights-Performance/blob/main/Visualizations/Choloromap.PNG)
 
 In choloroplethmap,  number of flights flying from each state can be seen. Thanks to hover in the dash, it can also be seen which state has how many per each airline flights.
+
+-   Percentage of diverted airport landings per reporting airline using pie chart.
+
+![alt text](https://github.com/bozanomer/US-Domestic-Airline-Flights-Performance/blob/main/Visualizations/newplot.png)
