@@ -54,3 +54,9 @@ American Airlines has much more flights over its competitors.The rest ones has a
 The airline reports 3 kinds of cancellation which codes are A,B,C.These codes mean:
 -       A = carrier, B = weather, C = NAS(The National Airspace System), D = security
 It means there is no any cancellation because of security.As we focus on visualization, After 9th months, the weather does not has any impacts on cancellationa too and carrier problems cause in flight cancelletion occurs in spring and autumn more.
+
+
+2.  Yearly Average Flight Delay Statistics
+
+What here i want to do is show  just whole visualizations together.The year is chosen as 2019 and the visualizations demonstrate how carrier affects delay time by airline, how weather gives rise to delay by airline,NAS effects on delay time by airline,average security delay time by airline and finally average late aircraft delay time by airline respectively.Who make a depth analysis can go on in the light of these visualizations.There are many outlier observations and in order to make the graph more meaningful and understandable these observations should take into consederations.
+![alt text](https://github.com/bozanomer/US-Domestic-Airline-Flights-Performance/blob/main/Visualizations/Statistics.PNG)
