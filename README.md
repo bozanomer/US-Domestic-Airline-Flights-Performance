@@ -35,7 +35,9 @@ We have two kind of reports and each report has 5 different visualization which 
 
 1.  Yearly Airline Performance Report 
 
-I am goin to choose year as 2019:
+I am going to choose year as 2019:
 -   Number of flights flying from each state using choropleth map.
 
 ![alt text](https://github.com/bozanomer/US-Domestic-Airline-Flights-Performance/blob/main/Visualizations/Choloromap.PNG)
+
+In choloroplethmap,  number of flights flying from each state can be seen. Thanks to hover in the dash, it can also be seen which state has how many per each airline flights.
