@@ -45,3 +45,8 @@ In choloroplethmap,  number of flights flying from each state can be seen. Thank
 -   Percentage of diverted airport landings per reporting airline using pie chart.
 
 ![alt text](https://github.com/bozanomer/US-Domestic-Airline-Flights-Performance/blob/main/Visualizations/newplot.png)
+
+American Airlines has much more flights over its competitors.The rest ones has almost same number of flights.
+
+-   Number of flights under different cancellation categories using bar chart.
+![alt text](https://github.com/bozanomer/US-Domestic-Airline-Flights-Performance/blob/main/Visualizations/CancelletionCode.png)
