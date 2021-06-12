@@ -50,3 +50,7 @@ American Airlines has much more flights over its competitors.The rest ones has a
 
 -   Number of flights under different cancellation categories using bar chart.
 ![alt text](https://github.com/bozanomer/US-Domestic-Airline-Flights-Performance/blob/main/Visualizations/CancelletionCode.png)
+
+The airline reports 3 kinds of cancellation which codes are A,B,C.These codes mean:
+A = carrier, B = weather, C = NAS(The National Airspace System), D = security
+It means there is no any cancellation because of security.As we focus on visualization, After 9th months, the weather does not has any impacts on cancellationa too and carrier problems cause in flight cancelletion occurs in spring and autumn more.
