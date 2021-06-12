@@ -38,4 +38,4 @@ We have two kind of reports and each report has 5 different visualization which 
 I am goin to choose year as 2019:
 -   Number of flights flying from each state using choropleth map.
 
-![alt text](https://github.com/bozanomer/E-CommercialDatabaseAnalysis/blob/main/Diagram.png)
+![alt text](https://github.com/bozanomer/US-Domestic-Airline-Flights-Performance/blob/main/Visualizations/Choloromap.PNG)
