@@ -13,7 +13,7 @@ from dash import no_update
 # Create a dash application
 app = JupyterDash(__name__)
 JupyterDash.infer_jupyter_proxy_config()
-server=app.server
+
 
 #  Clear the layout and do not display exception till callback gets executed
 app.config.suppress_callback_exceptions = True
