@@ -14,7 +14,7 @@ from dash import no_update
 app = JupyterDash(__name__)
 JupyterDash.infer_jupyter_proxy_config()
 
-# REVIEW1: Clear the layout and do not display exception till callback gets executed
+#  Clear the layout and do not display exception till callback gets executed
 app.config.suppress_callback_exceptions = True
 
 # Read the airline data into pandas dataframe
@@ -40,9 +40,9 @@ Returns:
 """
 def compute_data_choice_1(df):
     # Cancellation Category Count
-    bar_data = df.groupby(['Quarter','CancellationCode'])['Flights'].sum().reset_index()
+    bar_data = df.groupby(['Month','CancellationCode'])['Flights'].sum().reset_index()
     # Average flight time by reporting airline
-    line_data = df.groupby(['Quarter','Reporting_Airline'])['AirTime'].mean().reset_index()
+    line_data = df.groupby(['Month','Reporting_Airline'])['AirTime'].mean().reset_index()
     # Diverted Airport Landings
     div_data = df[df['DivAirportLandings'] != 0.0]
     # Source state count
@@ -64,17 +64,17 @@ Returns:
 """
 def compute_data_choice_2(df):
     # Compute delay averages
-    avg_car = df.groupby(['Quarter','Reporting_Airline'])['CarrierDelay'].mean().reset_index()
-    avg_weather = df.groupby(['Quarter','Reporting_Airline'])['WeatherDelay'].mean().reset_index()
-    avg_NAS = df.groupby(['Quarter','Reporting_Airline'])['NASDelay'].mean().reset_index()
-    avg_sec = df.groupby(['Quarter','Reporting_Airline'])['SecurityDelay'].mean().reset_index()
-    avg_late = df.groupby(['Quarter','Reporting_Airline'])['LateAircraftDelay'].mean().reset_index()
+    avg_car = df.groupby(['Month','Reporting_Airline'])['CarrierDelay'].mean().reset_index()
+    avg_weather = df.groupby(['Month','Reporting_Airline'])['WeatherDelay'].mean().reset_index()
+    avg_NAS = df.groupby(['Month','Reporting_Airline'])['NASDelay'].mean().reset_index()
+    avg_sec = df.groupby(['Month','Reporting_Airline'])['SecurityDelay'].mean().reset_index()
+    avg_late = df.groupby(['Month','Reporting_Airline'])['LateAircraftDelay'].mean().reset_index()
     return avg_car, avg_weather, avg_NAS, avg_sec, avg_late
 
 
 # Application layout
 app.layout = html.Div(children=[
-                                # TODO1: Add title to the dashboard
+                                #  Add title to the dashboard
                               html.H1('US Domestic Airline Flights Performance',
                                          style={'textAlign': 'center',
                                                 'color': '#503D36',
@@ -91,13 +91,13 @@ app.layout = html.Div(children=[
                                             html.H2('Report Type:', style={'margin-right': '2em'}),
                                             ]
                                         ),
-                                        # TODO2: Add a dropdown
+                                        #  Add a dropdown
 
                                        dcc.Dropdown(id='input-type',
                                                      # Update dropdown values using list comphrehension
-                                                     options=[{'label':'Yearly Airline Performance Report', 'value':'OPT1'},{'label':'Yearly Average Flight Delay Statistics', 'value':'OPT2'}],
-                                                     placeholder="Report Type",
-                                                     style={'width':'80%', 'padding':'3px', 'font-size': '20px', 'text-align-last' : 'center'}),
+                                                      options=[{'label':'Yearly Airline Performance Report', 'value':'OPT1'},{'label':'Yearly Average Flight Delay Statistics', 'value':'OPT2'}],
+                                                      placeholder="Report Type",
+                                                      style={'width':'80%', 'padding':'3px', 'font-size': '20px', 'text-align-last' : 'center'}),
                                             # Place them next to each other using the division style
 
 
@@ -146,7 +146,7 @@ app.layout = html.Div(children=[
 
 
  #Callback function definition
-# TODO4: Add 5 ouput components
+#  Add 5 ouput components
 @app.callback( [Output(component_id='plot1', component_property='children'),
                Output(component_id='plot2', component_property='children'),
                Output(component_id='plot3', component_property='children'),
@@ -163,25 +163,25 @@ app.layout = html.Div(children=[
 def get_graph(chart, year, children1, children2, c3, c4, c5):
 
         # Select data
-        df =  airline_data[(airline_data['Quarter']==1)| (airline_data['Quarter']==2)|( airline_data['Quarter']==3)|( airline_data['Quarter']==4)]
+        df =  airline_data[airline_data['Year']==int(year)]
         df.replace(["UA","AA","US","F9","B6","OO","AS","NK","WN","DL","EV","HA","MQ","VX","9E","G4","OH"],
-            ["United Air Lines Inc.","American Airlines Inc.","US Airways Inc.",
-             "Frontier Airlines Inc.","JetBlue Airways","Skywest Airlines Inc.",
-             "Alaska Airlines Inc.","Spirit Air Lines","Southwest Airlines Co.",
-             "Delta Air Lines Inc.","Atlantic Southeast Airlines","Hawaiian Airlines Inc.",
-             "American Eagle Airlines Inc.","Virgin America","Endeavor Air","Allegiant Air","PSA Airlines"], inplace=True)
+                ["United Air Lines Inc.","American Airlines Inc.","US Airways Inc.",
+                 "Frontier Airlines Inc.","JetBlue Airways","Skywest Airlines Inc.",
+                 "Alaska Airlines Inc.","Spirit Air Lines","Southwest Airlines Co.",
+                 "Delta Air Lines Inc.","Atlantic Southeast Airlines","Hawaiian Airlines Inc.",
+                 "American Eagle Airlines Inc.","Virgin America","Endeavor Air","Allegiant Air","PSA Airlines"], inplace=True)
 
         if chart == 'OPT1':
             # Compute required information for creating graph from the data
             bar_data, line_data, div_data, map_data, tree_data = compute_data_choice_1(df)
              # Number of flights under different cancellation categories
-            bar_fig = px.bar(bar_data, x='Quarter', y='Flights', color='CancellationCode', title='Quarterly Flight Cancellation')
+            bar_fig = px.bar(bar_data, x='Month', y='Flights', color='CancellationCode', title='Monthly Flight Cancellation')
 
-            # TODO5: Average flight time by reporting airline
-            # TODO5: Average flight time by reporting airline
-        #line_fig = px.line(line_data, x='Quarter', y='AirTime', color='Reporting_Airline', title='Average quarterly flight time (minutes) by airline')`
+           
+             #Average flight time by reporting airline
+        
 
-            line_fig = px.line(line_data, x='Quarter', y='AirTime', color='Reporting_Airline', title='Average Quarterly Flight Time (minutes) by Airline')
+            line_fig = px.line(line_data, x='Month', y='AirTime', color='Reporting_Airline', title='Average Monthly Flight Time (minutes) by Airline')
 
 
             # Percentage of diverted airport landings per reporting airline
@@ -198,11 +198,11 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
             map_fig.update_layout(
                     title_text = 'Number of Flights From Origin State',
                     geo_scope='usa') # Plot only the USA instead of globe
-             # TODO6: Number of flights flying to each state from each reporting airline
+             #  Number of flights flying to each state from each reporting airline
             tree_fig=px.treemap(tree_data, path=['DestState', 'Reporting_Airline'], values='Flights', color='Flights',color_continuous_scale='RdBu', title='Flight Count by Airline to Destination State')
 
 
-            # REVIEW6: Return dcc.Graph component to the empty division
+            #  Return dcc.Graph component to the empty division
             return [dcc.Graph(figure=tree_fig),
                     dcc.Graph(figure=pie_fig),
                     dcc.Graph(figure=map_fig),
@@ -211,17 +211,16 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
 
                    ]
         else:
-            # REVIEW7: This covers chart type 2 and we have completed this exercise under Flight Delay Time Statistics Dashboard section
+            #  This covers chart type 2 and we have completed this exercise under Flight Delay Time Statistics Dashboard section
             # Compute required information for creating graph from the data
             avg_car, avg_weather, avg_NAS, avg_sec, avg_late = compute_data_choice_2(df)
 
             # Create graph
-
-            carrier_fig = px.line(avg_car, x='Quarter', y='CarrierDelay', color='Reporting_Airline', title='Average Carrier Delay Time (minutes) by Airline')
-            weather_fig = px.line(avg_weather, x='Quarter', y='WeatherDelay', color='Reporting_Airline', title='Average Weather Delay Time (minutes) by Airline')
-            nas_fig = px.line(avg_NAS, x='Quarter', y='NASDelay', color='Reporting_Airline', title='Average NAS Delay Time (minutes) by Airline')
-            sec_fig = px.line(avg_sec, x='Quarter', y='SecurityDelay', color='Reporting_Airline', title='Average Security Delay Time (minutes) by Airline')
-            late_fig = px.line(avg_late, x='Quarter', y='LateAircraftDelay', color='Reporting_Airline', title='Average Late Aircraft Delay Time (minutes) by Airline')
+            carrier_fig = px.line(avg_car, x='Month', y='CarrierDelay', color='Reporting_Airline', title='Average Carrier Delay Time (minutes) by Airline')
+            weather_fig = px.line(avg_weather, x='Month', y='WeatherDelay', color='Reporting_Airline', title='Average Weather Delay Time (minutes) by Airline')
+            nas_fig = px.line(avg_NAS, x='Month', y='NASDelay', color='Reporting_Airline', title='Average NAS Delay Time (minutes) by Airline')
+            sec_fig = px.line(avg_sec, x='Month', y='SecurityDelay', color='Reporting_Airline', title='Average Security Delay Time (minutes) by Airline')
+            late_fig = px.line(avg_late, x='Month', y='LateAircraftDelay', color='Reporting_Airline', title='Average Late Aircraft Delay Time (minutes) by Airline')
 
             return[dcc.Graph(figure=carrier_fig),
                    dcc.Graph(figure=weather_fig),
