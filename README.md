@@ -6,7 +6,7 @@ Below are the key report items,
 -   Yearly airline performance report 
 -   Yearly average flight delay statistics
 
-_NOTE:_ Year range is between 2005 and 2020.
+_NOTE:_ Year range is between 2005 and 2019.
 
 ## Components of the Report Items
 
