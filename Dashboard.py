@@ -11,9 +11,10 @@ from dash import no_update
 
 
 # Create a dash application
-app = JupyterDash(__name__)
-JupyterDash.infer_jupyter_proxy_config()
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
+server = app.server
 
 #  Clear the layout and do not display exception till callback gets executed
 app.config.suppress_callback_exceptions = True
@@ -89,7 +90,7 @@ app.layout = html.Div(children=[
 
                                         html.Div(
                                             [
-                                            html.H2('Report Type:', style={'margin-right': '2em'}),
+                                            html.H2('Report Type:', style={'font-size': '30px','margin-right': '2em'}),
                                             ]
                                         ),
                                         #  Add a dropdown
@@ -111,7 +112,7 @@ app.layout = html.Div(children=[
                                        # Create an division for adding dropdown helper text for choosing year
                                         html.Div(
                                             [
-                                            html.H2('Choose Year:', style={'margin-right': '2em'})
+                                            html.H2('Choose Year:', style={'font-size': '30px','margin-right': '2em'})
                                             ]
                                         ),
 
@@ -128,7 +129,7 @@ app.layout = html.Div(children=[
                                 html.Br(),
                                      ]),
                                 # Add Computed graphs
-                                # REVIEW3: Observe how we add an empty division and providing an id that will be updated during callback
+                                #  Observe how we add an empty division and providing an id that will be updated during callback
                                 html.Div(html.Div([ ], id='plot1')),
 
                                 html.Div([
@@ -155,7 +156,7 @@ app.layout = html.Div(children=[
                Output(component_id='plot5', component_property='children')],
                [Input(component_id='input-type', component_property='value'),
                 Input(component_id='input-year', component_property='value')],
-               # REVIEW4: Holding output state till user enters all the form information. In this case, it will be chart type and year
+               #  Holding output state till user enters all the form information. In this case, it will be chart type and year
                [State('plot1', 'children'), State('plot2', 'children'),
                 State('plot3', 'children'), State('plot4', 'children'),
                 State('plot5', 'children')
@@ -178,9 +179,9 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
              # Number of flights under different cancellation categories
             bar_fig = px.bar(bar_data, x='Month', y='Flights', color='CancellationCode', title='Monthly Flight Cancellation')
 
-           
-             #Average flight time by reporting airline
-        
+            #  Average flight time by reporting airline
+
+        #line_fig = px.line(line_data, x='Month', y='AirTime', color='Reporting_Airline', title='Average monthly flight time (minutes) by airline')`
 
             line_fig = px.line(line_data, x='Month', y='AirTime', color='Reporting_Airline', title='Average Monthly Flight Time (minutes) by Airline')
 
@@ -232,5 +233,5 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
 
 # Run the app
 if __name__ == '__main__':
-    # REVIEW8: Adding dev_tools_ui=False, dev_tools_props_check=False can prevent error appearing before calling callback function
-    app.run_server(mode="inline", host="localhost", debug=True, dev_tools_ui=False, dev_tools_props_check=False)
+    #  Adding dev_tools_ui=False, dev_tools_props_check=False can prevent error appearing before calling callback function
+    app.run_server(host="localhost", debug=True, dev_tools_ui=False, dev_tools_props_check=False)
