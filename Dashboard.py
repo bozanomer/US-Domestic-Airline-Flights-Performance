@@ -8,13 +8,16 @@ from jupyter_dash import JupyterDash
 import plotly.graph_objects as go
 import plotly.express as px
 from dash import no_update
-
-
+import os
+from random import randint
 # Create a dash application
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__,external_stylesheets=external_stylesheets)
 
 server = app.server
+
+server.secret_key = os.environ.get('secret_key', str(randint(0, 1000000)))
+
 
 #  Clear the layout and do not display exception till callback gets executed
 app.config.suppress_callback_exceptions = True
