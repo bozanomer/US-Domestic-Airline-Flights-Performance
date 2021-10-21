@@ -2,7 +2,7 @@
 
 Note: I deployed my project in Heroku, you can easily recieve it right here: https://usairlinesperformance.herokuapp.com/
 
-This is a Dash project indicates US Domestic Airline Performance between 2005-2019.It was collected from United States Department of Transportation and preprocessed with Python.The project main aim is to analyze the performance of the reporting airline to improve fight reliability thereby improving customer relaibility.We are going to  run two reports.
+This is a Dash project indicates US Domestic Airline Performance between 2005-2019.It was collected from United States Department of Transportation and preprocessed with Python.The project main aim is to analyze the performance of the reporting airline to improve fight reliability thereby improving customer relaibility.I am  going to  run two reports.
 
 Below are the key report items,
 
@@ -34,7 +34,7 @@ _NOTE:_ Year range is between 2005 and 2019.
 
 ## Results of  the Report Items
 
-We have two kind of reports and each report has 5 different visualization which has demonstrate different kind of information.I do not want to make a depth analysis each of visaualization, I just want to show you which kind of visualization shows which information.
+I have two kind of reports and each report has 5 different visualizations which has demonstrate different kind of information.I do not want to make a depth analysis each of visaualization, I just want to show you which kind of visualization shows which information.
 
 1.  Yearly Airline Performance Report 
 
